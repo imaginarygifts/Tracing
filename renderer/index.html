@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>Tracing App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-  <!-- LEFT PANEL -->
-  <div class="panel">
-    <h2>Upload</h2>
-    <input type="file" id="upload">
+  <!-- LEFT PANEL (Controls) -->
+  <div class="panel left-panel">
 
-    <h3>Tracing Mode</h3>
+    <h2>⚙️ Controls</h2>
+
+    <!-- Upload -->
+    <label class="section">Upload Image</label>
+    <input type="file" id="upload" accept="image/png, image/jpeg">
+
+    <!-- Mode -->
+    <label class="section">Tracing Mode</label>
     <select id="mode">
-      <option>Line Art</option>
-      <option>Logo</option>
-      <option>Clipart</option>
+      <option value="line">Line Art</option>
+      <option value="logo">Logo</option>
+      <option value="clipart">Clipart</option>
     </select>
 
-    <h3>Controls</h3>
+    <!-- Sliders -->
     <label>Detail</label>
-    <input type="range" id="detail" min="1" max="10">
+    <input type="range" id="detail" min="1" max="10" value="2">
 
     <label>Smoothness</label>
-    <input type="range" id="smooth" min="1" max="10">
+    <input type="range" id="smooth" min="1" max="10" value="4">
 
-    <button id="traceBtn">TRACE</button>
+    <!-- Buttons -->
+    <button id="traceBtn">🚀 Trace Image</button>
+
   </div>
 
-  <!-- RIGHT PANEL -->
-  <div class="panel">
-    <h2>Preview</h2>
-    <canvas id="canvas"></canvas>
+  <!-- RIGHT PANEL (Preview) -->
+  <div class="panel right-panel">
 
-    <button id="exportSVG">Export SVG</button>
+    <h2>🖼️ Preview</h2>
+
+    <div class="preview-area">
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="actions">
+      <button id="exportSVG">⬇ Export SVG</button>
+    </div>
+
   </div>
 
 </div>
 
-<script src="app.js"></script>
+<!-- Libraries -->
 <script src="../libs/potrace.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
