@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- LEFT PANEL -->
+  <div class="panel">
+    <h2>Upload</h2>
+    <input type="file" id="upload">
+
+    <h3>Tracing Mode</h3>
+    <select id="mode">
+      <option>Line Art</option>
+      <option>Logo</option>
+      <option>Clipart</option>
+    </select>
+
+    <h3>Controls</h3>
+    <label>Detail</label>
+    <input type="range" id="detail" min="1" max="10">
+
+    <label>Smoothness</label>
+    <input type="range" id="smooth" min="1" max="10">
+
+    <button id="traceBtn">TRACE</button>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="panel">
+    <h2>Preview</h2>
+    <canvas id="canvas"></canvas>
+
+    <button id="exportSVG">Export SVG</button>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
