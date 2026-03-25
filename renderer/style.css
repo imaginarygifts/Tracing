@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  color: white;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  padding: 10px;
+  gap: 10px;
+}
+
+/* Glass panels */
+.panel {
+  flex: 1;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* Mobile-friendly stacking */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+/* Buttons */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #4cafef;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="range"] {
+  width: 100%;
+}
