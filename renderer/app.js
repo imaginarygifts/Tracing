@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 let img = new Image();
+let currentSVG = "";
 
 upload.addEventListener("change", (e) => {
   const file = e.target.files[0];
@@ -21,15 +22,29 @@ upload.addEventListener("change", (e) => {
 });
 
 document.getElementById("traceBtn").onclick = () => {
-  // Simple B/W conversion (placeholder for tracing)
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const data = imageData.data;
+  const dataURL = canvas.toDataURL("image/png");
 
-  for (let i = 0; i < data.length; i += 4) {
-    const avg = (data[i] + data[i+1] + data[i+2]) / 3;
-    const val = avg > 128 ? 255 : 0;
-    data[i] = data[i+1] = data[i+2] = val;
-  }
+  Potrace.loadImageFromUrl(dataURL, function() {
 
-  ctx.putImageData(imageData, 0, 0);
+    // SETTINGS (like Corel sliders)
+    Potrace.setParameter({
+      turdSize: 2,        // remove noise
+      optTolerance: 0.4,  // smoothness
+      alphaMax: 1         // corner sharpness
+    });
+
+    Potrace.process(function() {
+      const svg = Potrace.getSVG(1);
+
+      currentSVG = svg;
+
+      // Show SVG preview
+      document.querySelector(".panel:nth-child(2)").innerHTML =
+        "<h2>Preview</h2>" + svg +
+        '<button id="exportSVG">Export SVG</button>';
+
+      bindExport();
+    });
+
+  });
 };
